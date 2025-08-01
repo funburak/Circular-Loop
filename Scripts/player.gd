@@ -3,9 +3,19 @@ class_name Player
 extends AnimatedSprite2D
 
 var enemy_group: Array[Enemy]
-
 var health : int = 100
 
+var can_attack : bool = true
+var attack_timer : Timer
+
+func _ready() -> void:
+	attack_timer = Timer.new()
+	attack_timer.wait_time = 0.25
+	attack_timer.one_shot = true
+	attack_timer.autostart = false
+	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))
+	add_child(attack_timer)
+	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area:
 		var enemy = area.get_parent() as Enemy
@@ -19,14 +29,16 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		take_damage(enemy.damage)
 
 func _input(event):
-	var to_remove := []
-	for enemy in enemy_group.duplicate():
-		if event.is_action_pressed(enemy.key_label):
-			enemy.take_damage()
-			to_remove.append(enemy)
+	if can_attack:
+		var to_remove := []
+		for enemy in enemy_group.duplicate():
+			if event.is_action_pressed(enemy.key_label):
+				enemy.take_damage()
+				to_remove.append(enemy)
+				start_attack_cooldown()
 
-	for enemy in to_remove:
-		enemy_group.erase(enemy)
+		for enemy in to_remove:
+			enemy_group.erase(enemy)
 
 	if event.is_action_pressed("A"):
 		change_position("left")
@@ -46,3 +58,10 @@ func change_position(position):
 	if game:
 		game.change_player_position(position)
 		
+
+func start_attack_cooldown():
+	can_attack = false
+	attack_timer.start()
+
+func _on_attack_timer_timeout():
+	can_attack = true
