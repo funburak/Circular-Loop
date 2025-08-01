@@ -5,8 +5,8 @@ extends Enemy
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	speed = 1
-	damage = 10
-	money_drop = 10
-	point = 10
+	damage = 15
+	money_drop = 20
+	point = 20
 	if(health<=0):
-		GameManager.enemy0_point += 1
+		GameManager.enemy2_point += 1
