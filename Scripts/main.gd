@@ -8,6 +8,7 @@ var rng = RandomNumberGenerator.new()
 @onready var pause_menu: Control = $PauseMenu
 
 func _ready() -> void:
+	Engine.time_scale = 1
 	GameManager.game_is_paused = false
 	spawn_player()
 	rng.randomize()
