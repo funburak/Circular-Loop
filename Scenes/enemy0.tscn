@@ -34,7 +34,6 @@ grow_horizontal = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 100
-text = "K"
 horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -9,6 +9,8 @@ var key_label: StringName
 var damage: int
 var current_center_point: Vector2 = GameManager.center_left_circle
 var health = 2
+var point: int
+var money_drop: int
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
@@ -25,6 +27,8 @@ func _physics_process(delta: float) -> void:
 	
 	if(health <= 0):
 		queue_free()
+		GameManager.total_money += money_drop
+		GameManager.total_point += point
 	
 
 func set_label_text():

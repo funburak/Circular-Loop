@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://w5gm6lo4hsbp"]
+
+[ext_resource type="Script" uid="uid://bdqnbshpd2qyd" path="res://Scripts/Enemy/enemy2.gd" id="1_0unbm"]
+[ext_resource type="Texture2D" uid="uid://0ad7b7aijfws" path="res://icon.svg" id="1_6qxgf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rei5f"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymnt4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6qxgf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldsis"]
+size = Vector2(124, 128)
+
+[node name="Enemy2" type="AnimatedSprite2D"]
+material = SubResource("CanvasItemMaterial_rei5f")
+sprite_frames = SubResource("SpriteFrames_ymnt4")
+script = ExtResource("1_0unbm")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -202.0
+offset_right = 58.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ldsis")
