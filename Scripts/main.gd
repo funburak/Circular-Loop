@@ -23,6 +23,7 @@ var player : Player
 func _ready() -> void:
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
+	reset_labels()
 	spawn_player()
 	spawn_enemy0()
 	spawn_enemy1()
@@ -95,7 +96,14 @@ func _input(event: InputEvent) -> void:
 			pause()
 		else:
 			unpause()
-
+func reset_labels():
+	GameManager.enemy0_point = 0
+	GameManager.enemy1_point = 0
+	GameManager.enemy2_point = 0
+	GameManager.enemy3_point = 0
+	GameManager.enemy4_point = 0
+	GameManager.total_money = 0
+	GameManager.total_point = 0
 func pause():
 	pause_menu.show()
 	Engine.time_scale = 0
