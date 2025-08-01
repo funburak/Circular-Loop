@@ -10,6 +10,7 @@ var rng = RandomNumberGenerator.new()
 var player : Player
 
 func _ready() -> void:
+	Engine.time_scale = 1
 	GameManager.game_is_paused = false
 	spawn_player()
 	rng.randomize()
