@@ -6,6 +6,7 @@ var center_left_circle = Vector2(-382,220)
 var spawn_points_left_circle = [Vector2(50,40), Vector2(100,400), Vector2(300,400), Vector2(50,50)]
 var rng = RandomNumberGenerator.new()
 var keys = ["Q", "W", "E", "R", "F"]
+var game_is_paused: bool
 
 func get_random_key():
 	rng.randomize()

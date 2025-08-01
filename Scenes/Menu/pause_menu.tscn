@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddeu0x67hsdkj"]
+
+[ext_resource type="Script" uid="uid://b4uu2sohp8f06" path="res://Scripts/Menu/pause_menu.gd" id="1_i0al5"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0al5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAME IS PAUSED"
+
+[node name="ReturnToGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Return to the game"
+
+[node name="ReturnToMainmenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back to main menu"
+
+[connection signal="pressed" from="VBoxContainer/ReturnToGameButton" to="." method="_on_return_to_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ReturnToMainmenuButton" to="." method="_on_return_to_mainmenu_button_pressed"]
