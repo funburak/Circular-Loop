@@ -7,6 +7,8 @@ var angle: float = 0.0
 var speed: float = 2.0
 var key_label: StringName
 var damage: int
+var current_center_point: Vector2 = GameManager.center_left_circle
+var health = 2
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
@@ -18,9 +20,12 @@ func _physics_process(delta: float) -> void:
 	var x_pos = cos(angle)
 	var y_pos = sin(angle)
 
-	position.x = radius * x_pos + GameManager.center_left_circle.x
-	position.y = radius * y_pos + GameManager.center_left_circle.y
-
+	position.x = radius * x_pos + current_center_point.x
+	position.y = radius * y_pos + current_center_point.y
+	
+	if(health <= 0):
+		queue_free()
+	
 
 func set_label_text():
 	for node : Node in get_children():
@@ -28,5 +33,12 @@ func set_label_text():
 			node.text = key_label
 			
 
-func take_damage(): 
-	queue_free()
+func take_damage():
+	health -= 1
+	change_circle()
+
+func change_circle():
+	if current_center_point == GameManager.center_left_circle:
+		current_center_point = GameManager.center_right_circle
+	else:
+		current_center_point = GameManager.center_left_circle

@@ -7,6 +7,8 @@ var rng = RandomNumberGenerator.new()
 @onready var player_right: Marker2D = $Player_Right
 @onready var pause_menu: Control = $PauseMenu
 
+var player : Player
+
 func _ready() -> void:
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
@@ -24,7 +26,7 @@ func _process(delta: float) -> void:
 	pass
 
 func spawn_player():
-	var player = player_scene.instantiate()
+	player = player_scene.instantiate()
 	player.global_position = player_left.global_position
 	add_child(player)
 	
@@ -43,3 +45,9 @@ func unpause():
 	pause_menu.hide()
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
+
+func change_player_position(position):
+	if player.global_position == player_left.global_position && position == "right":
+		player.global_position = player_right.global_position
+	elif player.global_position == player_right.global_position && position == "left":
+		player.global_position = player_left.global_position

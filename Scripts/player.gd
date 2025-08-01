@@ -19,18 +19,30 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		take_damage(enemy.damage)
 
 func _input(event):
-	for enemy : Enemy in enemy_group:
+	var to_remove := []
+	for enemy in enemy_group.duplicate():
 		if event.is_action_pressed(enemy.key_label):
 			enemy.take_damage()
-			enemy_group.erase(enemy) # Eren solved
-			
+			to_remove.append(enemy)
+
+	for enemy in to_remove:
+		enemy_group.erase(enemy)
+
+	if event.is_action_pressed("A"):
+		change_position("left")
+	if event.is_action_pressed("D"):
+		change_position("right")
 
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		queue_free()
 
-
 func take_damage(damage: int):
 	if (health > 0):
 		health -= damage
-		print(health)
+
+func change_position(position):
+	var game = get_parent()
+	if game:
+		game.change_player_position(position)
+		
