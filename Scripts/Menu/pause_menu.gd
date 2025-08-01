@@ -8,4 +8,4 @@ func _on_return_to_game_button_pressed() -> void:
 	GameManager.game_is_paused = false
 	
 func _on_return_to_mainmenu_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
