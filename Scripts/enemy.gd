@@ -5,6 +5,8 @@ extends AnimatedSprite2D
 var radius = GameManager.radius
 var angle: float = 0.0
 var speed: float = 2.0
+var key_label: StringName
+var damage: int
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
@@ -18,3 +20,13 @@ func _physics_process(delta: float) -> void:
 
 	position.x = radius * x_pos + GameManager.center_left_circle.x
 	position.y = radius * y_pos + GameManager.center_left_circle.y
+
+
+func set_label_text():
+	for node : Node in get_children():
+		if node is Label:
+			node.text = key_label
+			
+
+func take_damage(): 
+	queue_free()

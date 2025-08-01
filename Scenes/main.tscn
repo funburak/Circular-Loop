@@ -12,3 +12,9 @@ script = ExtResource("1_jjgbg")
 texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_bo1nx")
+
+[node name="Player_Left" type="Marker2D" parent="."]
+position = Vector2(-384, -95)
+
+[node name="Player_Right" type="Marker2D" parent="."]
+position = Vector2(385, -89)
