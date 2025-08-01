@@ -15,8 +15,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
-radius = 160.0
-height = 320.0
+radius = 238.0
+height = 476.0
 
 [node name="Player" type="AnimatedSprite2D"]
 scale = Vector2(0.5, 0.5)
