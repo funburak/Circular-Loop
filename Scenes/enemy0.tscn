@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hrhiyfm8o3f2"]
+[gd_scene load_steps=5 format=3 uid="uid://hrhiyfm8o3f2"]
 
 [ext_resource type="Texture2D" uid="uid://0ad7b7aijfws" path="res://icon.svg" id="2_5wou7"]
 [ext_resource type="Script" uid="uid://b66ot1mgjbrf2" path="res://Scripts/enemy0.gd" id="2_tm0o1"]
@@ -14,6 +14,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wou7"]
+size = Vector2(124, 120)
+
 [node name="Enemy0" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_5wou7")
 script = ExtResource("2_tm0o1")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = -202.0
+offset_right = -6.0
+offset_bottom = -65.0
+grow_horizontal = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "K"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_5wou7")

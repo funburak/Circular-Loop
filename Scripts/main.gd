@@ -1,13 +1,27 @@
 extends Node2D
 
 var enemy_scene = preload("res://Scenes/enemy0.tscn")
+var player_scene = preload("res://Scenes/player.tscn")
 var rng = RandomNumberGenerator.new()
+@onready var player_left: Marker2D = $Player_Left
+@onready var player_right: Marker2D = $Player_Right
 
 
 func _ready() -> void:
+	spawn_player()
 	rng.randomize()
 	for i in range(0,10):
 		var enemy = enemy_scene.instantiate() as Enemy
 		if enemy:
+			enemy.key_label = GameManager.get_random_key()
+			enemy.set_label_text()
 			enemy.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
 			add_child(enemy)
+			
+
+
+func spawn_player():
+	var player = player_scene.instantiate()
+	player.global_position = player_left.global_position
+	add_child(player)
+	
