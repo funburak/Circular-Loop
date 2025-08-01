@@ -24,3 +24,75 @@ position = Vector2(385, -89)
 visible = false
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Total_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_top = -512.0
+offset_right = 476.0
+offset_bottom = -365.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 100
+
+[node name="Enemy0_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -546.0
+offset_top = -354.0
+offset_right = -409.0
+offset_bottom = -267.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Enemy1_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -342.0
+offset_top = -349.0
+offset_right = -206.0
+offset_bottom = -269.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Enemy2_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = -353.0
+offset_right = -2.0
+offset_bottom = -269.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Enemy3_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 65.0
+offset_top = -353.0
+offset_right = 199.0
+offset_bottom = -271.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Enemy4_Points" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 271.0
+offset_top = -347.0
+offset_right = 405.0
+offset_bottom = -261.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_font_sizes/font_size = 50

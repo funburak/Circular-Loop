@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf86pq5joaao3"]
+
+[ext_resource type="Script" uid="uid://g0joove6ju1r" path="res://Scripts/Enemy/enemy4.gd" id="1_gjvxq"]
+[ext_resource type="Texture2D" uid="uid://0ad7b7aijfws" path="res://icon.svg" id="1_v784m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26beh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v784m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v784m"]
+size = Vector2(124, 128)
+
+[node name="Enemy4" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_26beh")
+script = ExtResource("1_gjvxq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -202.0
+offset_right = 58.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_v784m")
