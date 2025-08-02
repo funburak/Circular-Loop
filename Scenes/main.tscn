@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=35 format=3 uid="uid://c6nhp21lu8lg8"]
-=======
 [gd_scene load_steps=41 format=3 uid="uid://c6nhp21lu8lg8"]
->>>>>>> e679bbd3208807891f6220517f5b11105da2cb64
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
@@ -136,13 +132,11 @@ animations = [{
 [sub_resource type="SystemFont" id="SystemFont_6vcvc"]
 font_names = PackedStringArray("Franklin Gothic")
 
-<<<<<<< HEAD
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueoa1"]
 size = Vector2(20, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vcvc"]
 size = Vector2(20, 144)
-=======
 [sub_resource type="SystemFont" id="SystemFont_7k868"]
 font_names = PackedStringArray("Franklin Gothic")
 
@@ -157,7 +151,6 @@ font_names = PackedStringArray("Franklin Gothic")
 
 [sub_resource type="SystemFont" id="SystemFont_neg2b"]
 font_names = PackedStringArray("Franklin Gothic")
->>>>>>> e679bbd3208807891f6220517f5b11105da2cb64
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
