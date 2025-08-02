@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c6nhp21lu8lg8"]
+[gd_scene load_steps=41 format=3 uid="uid://c6nhp21lu8lg8"]
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
@@ -144,6 +144,21 @@ animations = [{
 [sub_resource type="SystemFont" id="SystemFont_6vcvc"]
 font_names = PackedStringArray("Franklin Gothic")
 
+[sub_resource type="SystemFont" id="SystemFont_7k868"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_hpc6h"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_kltya"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_e08e2"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_neg2b"]
+font_names = PackedStringArray("Franklin Gothic")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
 
@@ -207,6 +222,7 @@ offset_right = -409.0
 offset_bottom = -267.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_7k868")
 theme_override_font_sizes/font_size = 50
 
 [node name="Enemy1_Points" type="Label" parent="."]
@@ -219,6 +235,7 @@ offset_right = -206.0
 offset_bottom = -269.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_hpc6h")
 theme_override_font_sizes/font_size = 50
 
 [node name="Enemy2_Points" type="Label" parent="."]
@@ -231,6 +248,7 @@ offset_right = -2.0
 offset_bottom = -269.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_kltya")
 theme_override_font_sizes/font_size = 50
 
 [node name="Enemy3_Points" type="Label" parent="."]
@@ -243,6 +261,7 @@ offset_right = 199.0
 offset_bottom = -271.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_e08e2")
 theme_override_font_sizes/font_size = 50
 
 [node name="Enemy4_Points" type="Label" parent="."]
@@ -255,4 +274,5 @@ offset_right = 405.0
 offset_bottom = -261.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_neg2b")
 theme_override_font_sizes/font_size = 50
