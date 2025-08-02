@@ -1,40 +1,62 @@
-[gd_scene load_steps=6 format=3 uid="uid://cypopt2ssnrg6"]
+[gd_scene load_steps=10 format=3 uid="uid://cypopt2ssnrg6"]
 
-[ext_resource type="Texture2D" uid="uid://0ad7b7aijfws" path="res://icon.svg" id="1_e6qmv"]
+[ext_resource type="Texture2D" uid="uid://hhees67f0o6p" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)1.png" id="1_6raio"]
 [ext_resource type="Script" uid="uid://dbdvekrxaqh1" path="res://Scripts/Enemy/enemy1.gd" id="1_kxcc3"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3rawh"]
-blend_mode = 3
+[ext_resource type="Texture2D" uid="uid://cmeb8poay543d" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)2.png" id="2_upvjy"]
+[ext_resource type="Texture2D" uid="uid://bsvlc3nk2lg5v" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)3.png" id="3_1rs1m"]
+[ext_resource type="Texture2D" uid="uid://d1h1r86702c1a" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)4.png" id="4_h53ee"]
+[ext_resource type="Texture2D" uid="uid://b2qwm852se81w" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)5.png" id="5_djddi"]
+[ext_resource type="Texture2D" uid="uid://wuomvih21fm5" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)6.png" id="6_tsil2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rrn72"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_e6qmv")
+"texture": ExtResource("1_6raio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_upvjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1rs1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h53ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_djddi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tsil2")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg660"]
-size = Vector2(124, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0k04r"]
+radius = 17.75
+height = 44.5
 
 [node name="Enemy1" type="AnimatedSprite2D"]
-material = SubResource("CanvasItemMaterial_3rawh")
-scale = Vector2(0.5, 0.5)
+texture_filter = 1
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rrn72")
+autoplay = "default"
+frame_progress = 0.31333
 script = ExtResource("1_kxcc3")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -60.0
-offset_top = -202.0
-offset_right = 58.0
-offset_bottom = -65.0
+offset_left = -14.75
+offset_top = -44.25
+offset_right = 103.25
+offset_bottom = 92.75
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 100
 horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_xg660")
+shape = SubResource("CapsuleShape2D_0k04r")
