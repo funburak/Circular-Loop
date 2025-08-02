@@ -1,26 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8fvvhgcqyw11"]
+[gd_scene load_steps=9 format=3 uid="uid://c8fvvhgcqyw11"]
 
-[ext_resource type="Texture2D" uid="uid://0ad7b7aijfws" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://dp0rg8l8ot3" path="res://Assets/player/idle1.png" id="1_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://dcn0skij7p0gh" path="res://Assets/player/idle2.png" id="2_3smsa"]
 [ext_resource type="Script" uid="uid://yo0wkbdtxqyc" path="res://Scripts/player.gd" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dee2556f8nes5" path="res://Assets/player/idle3.png" id="3_8erm5"]
+[ext_resource type="Texture2D" uid="uid://d22axkyx6po1w" path="res://Assets/player/idle4.png" id="4_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://bh4kwgpo8ocom" path="res://Assets/player/idle5.png" id="5_tx1dd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v0iea")
+"texture": ExtResource("1_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3smsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8erm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f1ek2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tx1dd")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
-radius = 238.0
-height = 476.0
+radius = 36.0
+height = 77.2
 
 [node name="Player" type="AnimatedSprite2D"]
-scale = Vector2(0.5, 0.5)
+texture_filter = 1
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_cvnsp")
+autoplay = "default"
 script = ExtResource("2_cvnsp")
 
 [node name="Area2D" type="Area2D" parent="."]
