@@ -48,6 +48,7 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		queue_free()
+		get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
 
 func take_damage(damage: int):
 	if (health > 0):

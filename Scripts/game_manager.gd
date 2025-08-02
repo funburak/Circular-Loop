@@ -9,13 +9,13 @@ var rng = RandomNumberGenerator.new()
 var keys = ["Q", "W", "E", "R", "F"]
 var game_is_paused: bool = false
 var volume_float_value: float
-var total_point: int
-var total_money: int
-var enemy0_point: int
-var enemy1_point: int
-var enemy2_point: int
-var enemy3_point: int
-var enemy4_point: int
+var total_point: int = 0
+var total_money: int = 0
+var enemy0_point: int = 0
+var enemy1_point: int = 0
+var enemy2_point: int = 0
+var enemy3_point: int = 0
+var enemy4_point: int = 0
 
 func get_random_key():
 	rng.randomize()
