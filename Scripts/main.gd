@@ -20,70 +20,42 @@ var rng = RandomNumberGenerator.new()
 
 var player : Player
 
+var wave_spawned = false
+
+
 func _ready() -> void:
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
+	GameManager.current_wave = 1
 	reset_labels()
 	spawn_player()
-	spawn_enemy0()
-	spawn_enemy1()
-	spawn_enemy2()
-	spawn_enemy3()
-	spawn_enemy4()
-			
+	
 func _process(delta: float) -> void:
+	if not wave_spawned:
+		match GameManager.current_wave:
+			1: 
+				wave_1()
+				wave_spawned = true
+	
 	label.text = str(GameManager.total_point)
 	enemy_0_points.text = str(GameManager.enemy0_point)
 	enemy_1_points.text = str(GameManager.enemy1_point)
 	enemy_2_points.text = str(GameManager.enemy2_point)
 	enemy_3_points.text = str(GameManager.enemy3_point)
 	enemy_4_points.text = str(GameManager.enemy4_point)
+	
+	check_enemies_dead()
 
-func spawn_enemy1():
+func spawn_enemies(count: int, enemy_scene_type: PackedScene):
 	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene1.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy0():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy = enemy_scene.instantiate() as Enemy
+	for i in range(0,count):
+		var enemy = enemy_scene_type.instantiate() as Enemy
 		if enemy:
 			enemy.key_label = GameManager.get_random_key()
 			enemy.set_label_text()
 			enemy.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
+			enemy.add_to_group("enemies")
 			add_child(enemy)
-func spawn_enemy2():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene2.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy3():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene3.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy4():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene4.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
 
 func spawn_player():
 	player = player_scene.instantiate()
@@ -118,3 +90,30 @@ func change_player_position(position):
 		player.global_position = player_right.global_position
 	elif player.global_position == player_right.global_position && position == "left":
 		player.global_position = player_left.global_position
+
+func check_enemies_dead():
+	if get_tree().get_nodes_in_group("enemies").is_empty():
+		GameManager.current_wave += 1
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		
+func wave_1():
+	rng.randomize()
+	var random1 = rng.randi_range(0,4)
+	var random2 = rng.randi_range(0,4)
+	
+	var enemy_count = 3
+	
+	match random1:
+		0: spawn_enemies(enemy_count, enemy_scene)
+		1: spawn_enemies(enemy_count, enemy_scene1)
+		2: spawn_enemies(enemy_count, enemy_scene2)
+		3: spawn_enemies(enemy_count, enemy_scene3)
+		4: spawn_enemies(enemy_count, enemy_scene4)
+		
+	match random2:
+		0: spawn_enemies(enemy_count, enemy_scene)
+		1: spawn_enemies(enemy_count, enemy_scene1)
+		2: spawn_enemies(enemy_count, enemy_scene2)
+		3: spawn_enemies(enemy_count, enemy_scene3)
+		4: spawn_enemies(enemy_count, enemy_scene4)
+		

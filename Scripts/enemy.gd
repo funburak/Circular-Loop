@@ -42,6 +42,7 @@ func take_damage():
 	change_circle()
 
 func change_circle():
+	angle -= 10
 	if current_center_point == GameManager.center_left_circle:
 		current_center_point = GameManager.center_right_circle
 	else:
