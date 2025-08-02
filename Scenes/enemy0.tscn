@@ -42,6 +42,7 @@ height = 40.5
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5wou7")
+autoplay = "default"
 frame = 5
 frame_progress = 0.668546
 script = ExtResource("2_tm0o1")
