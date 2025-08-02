@@ -48,7 +48,7 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		queue_free()
-
+	
 func take_damage(damage: int):
 	if (health > 0):
 		health -= damage
