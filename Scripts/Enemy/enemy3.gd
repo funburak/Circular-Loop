@@ -4,7 +4,7 @@ extends Enemy
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	speed = 2
+	speed = 1.5
 	damage = 5
 	money_drop = 25
 	point = 25

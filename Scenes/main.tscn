@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c6nhp21lu8lg8"]
+[gd_scene load_steps=40 format=3 uid="uid://c6nhp21lu8lg8"]
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
@@ -132,11 +132,6 @@ animations = [{
 [sub_resource type="SystemFont" id="SystemFont_6vcvc"]
 font_names = PackedStringArray("Franklin Gothic")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueoa1"]
-size = Vector2(20, 139)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vcvc"]
-size = Vector2(20, 144)
 [sub_resource type="SystemFont" id="SystemFont_7k868"]
 font_names = PackedStringArray("Franklin Gothic")
 
@@ -151,6 +146,12 @@ font_names = PackedStringArray("Franklin Gothic")
 
 [sub_resource type="SystemFont" id="SystemFont_neg2b"]
 font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueoa1"]
+size = Vector2(20, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vcvc"]
+size = Vector2(20, 144)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -172,7 +173,7 @@ texture = ExtResource("3_6vcvc")
 [node name="HP(Heart)" type="AnimatedSprite2D" parent="Sprite2D"]
 position = Vector2(-138.75, -109)
 sprite_frames = SubResource("SpriteFrames_54nrm")
-animation = &"HighHP"
+animation = &"MidHP"
 autoplay = "HighHP"
 
 [node name="Coin" type="AnimatedSprite2D" parent="Sprite2D"]
