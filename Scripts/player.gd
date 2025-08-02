@@ -2,9 +2,7 @@ class_name Player
 
 extends AnimatedSprite2D
 
-var enemy_group: Array[Enemy]
-var health : int = 100
-
+#var enemy_group: Array[Enemy]
 var can_attack : bool = true
 var attack_timer : Timer
 
@@ -20,25 +18,24 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area:
 		var enemy = area.get_parent() as Enemy
 		if enemy:
-			enemy_group.append(enemy)
+			GameManager.enemy_group.append(enemy)
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	var enemy = area.get_parent() as Enemy
-	if enemy && enemy_group.has(enemy):
-		enemy_group.erase(enemy)
-		take_damage(enemy.damage)
+	if enemy && GameManager.enemy_group.has(enemy):
+		GameManager.enemy_group.erase(enemy)
 
 func _input(event):
 	if can_attack:
 		var to_remove := []
-		for enemy in enemy_group.duplicate():
+		for enemy in GameManager.enemy_group.duplicate():
 			if event.is_action_pressed(enemy.key_label):
 				enemy.take_damage()
 				to_remove.append(enemy)
 				start_attack_cooldown()
 
 		for enemy in to_remove:
-			enemy_group.erase(enemy)
+			GameManager.enemy_group.erase(enemy)
 
 	if event.is_action_pressed("A"):
 		change_position("left")
@@ -46,13 +43,14 @@ func _input(event):
 		change_position("right")
 
 func _physics_process(delta: float) -> void:
-	if health <= 0:
+	print(GameManager.health)
+	if GameManager.health <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
 
-func take_damage(damage: int):
-	if (health > 0):
-		health -= damage
+#func take_damage(damage: int):
+	#if (GameManager.health > 0):
+		#GameManager.health -= damage
 
 func change_position(position):
 	var game = get_parent()

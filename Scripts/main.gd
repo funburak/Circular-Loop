@@ -23,6 +23,7 @@ var player : Player
 var wave_spawned = false
 
 func _ready() -> void:
+	GameManager.health = 100
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
 	GameManager.current_wave = 1
@@ -110,7 +111,6 @@ func spawn_random_enemies(count:int):
 
 func wave_1():
 	var enemy_count = 3
-	
 	spawn_random_enemies(enemy_count)
 	await get_tree().create_timer(1).timeout
 	spawn_random_enemies(enemy_count)
@@ -123,3 +123,19 @@ func wave_2():
 	spawn_random_enemies(enemy_count)
 	await get_tree().create_timer(1).timeout
 	spawn_random_enemies(enemy_count)
+		
+func take_damage(damage: int):
+	if (GameManager.health > 0):
+		GameManager.health -= damage
+
+func _on_left_area_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent() as Enemy
+	if enemy:
+		#GameManager.enemy_group.erase(enemy)
+		take_damage(enemy.damage)
+
+func _on_right_area_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent() as Enemy
+	if enemy:
+		#GameManager.enemy_group.erase(enemy)
+		take_damage(enemy.damage)
