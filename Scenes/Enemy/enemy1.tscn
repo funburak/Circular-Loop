@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://cypopt2ssnrg6"]
 
-[ext_resource type="Texture2D" uid="uid://cgqmkwsrd1x2s" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)1.png" id="1_6raio"]
+[ext_resource type="Texture2D" uid="uid://hhees67f0o6p" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)1.png" id="1_6raio"]
 [ext_resource type="Script" uid="uid://dbdvekrxaqh1" path="res://Scripts/Enemy/enemy1.gd" id="1_kxcc3"]
-[ext_resource type="Texture2D" uid="uid://gmq76aygust5" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)2.png" id="2_upvjy"]
-[ext_resource type="Texture2D" uid="uid://bpmnaix7rb2vd" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)3.png" id="3_1rs1m"]
-[ext_resource type="Texture2D" uid="uid://besg8sndd04xx" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)4.png" id="4_h53ee"]
-[ext_resource type="Texture2D" uid="uid://b2yt2kb0rvk1v" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)5.png" id="5_djddi"]
-[ext_resource type="Texture2D" uid="uid://bgs2vebfbo5rl" path="res://Assets/Enemies/Purple/Enemy1(PURPLE)6.png" id="6_tsil2"]
+[ext_resource type="Texture2D" uid="uid://cmeb8poay543d" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)2.png" id="2_upvjy"]
+[ext_resource type="Texture2D" uid="uid://bsvlc3nk2lg5v" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)3.png" id="3_1rs1m"]
+[ext_resource type="Texture2D" uid="uid://d1h1r86702c1a" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)4.png" id="4_h53ee"]
+[ext_resource type="Texture2D" uid="uid://b2qwm852se81w" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)5.png" id="5_djddi"]
+[ext_resource type="Texture2D" uid="uid://wuomvih21fm5" path="res://Assets/Enemies/Yellow/Enemy1(YELLOW)6.png" id="6_tsil2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rrn72"]
 animations = [{
@@ -35,15 +35,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0k04r"]
-radius = 12.0
-height = 40.0
+radius = 17.75
+height = 44.5
 
 [node name="Enemy1" type="AnimatedSprite2D"]
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rrn72")
 autoplay = "default"
-frame = 1
 frame_progress = 0.31333
 script = ExtResource("1_kxcc3")
 

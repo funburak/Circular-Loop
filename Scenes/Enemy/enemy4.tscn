@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://cf86pq5joaao3"]
 
 [ext_resource type="Script" uid="uid://g0joove6ju1r" path="res://Scripts/Enemy/enemy4.gd" id="1_gjvxq"]
-[ext_resource type="Texture2D" uid="uid://diijog7sws0md" path="res://Assets/Enemies/Green/Enemy1(GREEN)1.png" id="1_iyofd"]
-[ext_resource type="Texture2D" uid="uid://bhy4f8fku7lmb" path="res://Assets/Enemies/Green/Enemy1(GREEN)2.png" id="2_jb7m3"]
-[ext_resource type="Texture2D" uid="uid://dnsp6wqn1reum" path="res://Assets/Enemies/Green/Enemy1(GREEN)3.png" id="3_4f7pr"]
-[ext_resource type="Texture2D" uid="uid://y5jx4g6mmcd6" path="res://Assets/Enemies/Green/Enemy1(GREEN)4.png" id="4_dkdc5"]
-[ext_resource type="Texture2D" uid="uid://c8pif1a5lksqj" path="res://Assets/Enemies/Green/Enemy1(GREEN)5.png" id="5_2xfdk"]
-[ext_resource type="Texture2D" uid="uid://n87tjy2n2rm5" path="res://Assets/Enemies/Green/Enemy1(GREEN)6.png" id="6_6yrvr"]
+[ext_resource type="Texture2D" uid="uid://dixi163gggkju" path="res://Assets/Enemies/Blue/Enemy1(BLUE)1.png" id="1_iyofd"]
+[ext_resource type="Texture2D" uid="uid://dlnkhi2of7hp4" path="res://Assets/Enemies/Blue/Enemy1(BLUE)2.png" id="2_jb7m3"]
+[ext_resource type="Texture2D" uid="uid://dqef37aei0ly4" path="res://Assets/Enemies/Blue/Enemy1(BLUE)3.png" id="3_4f7pr"]
+[ext_resource type="Texture2D" uid="uid://dy1uakuf8h1nk" path="res://Assets/Enemies/Blue/Enemy1(BLUE)4.png" id="4_dkdc5"]
+[ext_resource type="Texture2D" uid="uid://6r3mfeulalqk" path="res://Assets/Enemies/Blue/Enemy1(BLUE)5.png" id="5_2xfdk"]
+[ext_resource type="Texture2D" uid="uid://bxltfieuo2fjt" path="res://Assets/Enemies/Blue/Enemy1(BLUE)6.png" id="6_6yrvr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_26beh"]
 animations = [{
@@ -42,7 +42,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_26beh")
 autoplay = "default"
-frame = 5
 frame_progress = 0.0171003
 script = ExtResource("1_gjvxq")
 
