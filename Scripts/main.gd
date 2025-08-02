@@ -5,6 +5,8 @@ var enemy_scene1 = preload("res://Scenes/Enemy/enemy1.tscn")
 var enemy_scene2 = preload("res://Scenes/Enemy/enemy2.tscn")
 var enemy_scene3 = preload("res://Scenes/Enemy/enemy3.tscn")
 var enemy_scene4 = preload("res://Scenes/Enemy/enemy4.tscn")
+var enemy_scenes = [enemy_scene, enemy_scene1, enemy_scene2, enemy_scene3, enemy_scene4]
+
 var player_scene = preload("res://Scenes/player.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var player_left: Marker2D = $Player_Left
@@ -17,11 +19,8 @@ var rng = RandomNumberGenerator.new()
 @onready var enemy_3_points: Label = $Enemy3_Points
 @onready var enemy_4_points: Label = $Enemy4_Points
 
-
 var player : Player
-
 var wave_spawned = false
-
 
 func _ready() -> void:
 	GameManager.health = 100
@@ -36,6 +35,9 @@ func _process(delta: float) -> void:
 		match GameManager.current_wave:
 			1: 
 				wave_1()
+				wave_spawned = true
+			2:
+				wave_2()
 				wave_spawned = true
 	
 	label.text = str(GameManager.total_point)
@@ -95,28 +97,32 @@ func change_player_position(position):
 func check_enemies_dead():
 	if get_tree().get_nodes_in_group("enemies").is_empty():
 		GameManager.current_wave += 1
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		if GameManager.current_wave == GameManager.max_wave:
+			get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
+		else:
+			wave_spawned = false
+			print("Shop phase")
 		
-func wave_1():
+func spawn_random_enemies(count:int):
 	rng.randomize()
-	var random1 = rng.randi_range(0,4)
-	var random2 = rng.randi_range(0,4)
-	
+	var index = rng.randi_range(0,enemy_scenes.size()-1)
+	var scene = enemy_scenes[index]
+	spawn_enemies(count,scene)
+
+func wave_1():
 	var enemy_count = 3
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
 	
-	match random1:
-		0: spawn_enemies(enemy_count, enemy_scene)
-		1: spawn_enemies(enemy_count, enemy_scene1)
-		2: spawn_enemies(enemy_count, enemy_scene2)
-		3: spawn_enemies(enemy_count, enemy_scene3)
-		4: spawn_enemies(enemy_count, enemy_scene4)
-		
-	match random2:
-		0: spawn_enemies(enemy_count, enemy_scene)
-		1: spawn_enemies(enemy_count, enemy_scene1)
-		2: spawn_enemies(enemy_count, enemy_scene2)
-		3: spawn_enemies(enemy_count, enemy_scene3)
-		4: spawn_enemies(enemy_count, enemy_scene4)
+func wave_2():
+	var enemy_count = 5
+	
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
 		
 func take_damage(damage: int):
 	if (GameManager.health > 0):
@@ -127,7 +133,6 @@ func _on_left_area_area_entered(area: Area2D) -> void:
 	if enemy:
 		#GameManager.enemy_group.erase(enemy)
 		take_damage(enemy.damage)
-
 
 func _on_right_area_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent() as Enemy
