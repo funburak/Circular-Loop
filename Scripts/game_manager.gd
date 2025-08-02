@@ -17,6 +17,9 @@ var enemy2_point: int = 0
 var enemy3_point: int = 0
 var enemy4_point: int = 0
 
+
+var current_wave = 1
+
 func get_random_key():
 	rng.randomize()
 	return keys[rng.randi_range(0,keys.size()-1)]

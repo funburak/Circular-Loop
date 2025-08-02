@@ -1,9 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://c6nhp21lu8lg8"]
+[gd_scene load_steps=36 format=3 uid="uid://c6nhp21lu8lg8"]
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
 [ext_resource type="Texture2D" uid="uid://b3267b7ryfys3" path="res://Assets/Hud/Background/HUD(COLOUR).png" id="3_6vcvc"]
-[ext_resource type="Shader" uid="uid://cyca76l6aoyfr" path="res://Shaders/Hud(colour).gdshader" id="3_7k868"]
+[ext_resource type="Shader" uid="uid://cyca76l6aoyfr" path="res://Shaders/texture_Hud(colour).gdshader" id="3_7k868"]
 [ext_resource type="PackedScene" uid="uid://ddeu0x67hsdkj" path="res://Scenes/Menu/pause_menu.tscn" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://bbstqha4hdlak" path="res://Assets/Hud/HP/High/HUD(Health)1.png" id="3_ueoa1"]
 [ext_resource type="Texture2D" uid="uid://f2ly7yju6avs" path="res://Assets/Hud/HP/High/HUD(Health)2.png" id="4_6vcvc"]
@@ -30,9 +30,18 @@
 [ext_resource type="Texture2D" uid="uid://bcmup71aq2ott" path="res://Assets/Hud/Coin/Coin5.png" id="25_dmskm"]
 [ext_resource type="Texture2D" uid="uid://b70tqpgwtbhko" path="res://Assets/Hud/Coin/Coin6.png" id="26_xdkp6"]
 
+[sub_resource type="Gradient" id="Gradient_6vcvc"]
+colors = PackedColorArray(0.79903, 0.622857, 0.150594, 1, 0.935827, 0.227747, 0.5417, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7k868"]
+gradient = SubResource("Gradient_6vcvc")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+repeat = 2
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hpc6h"]
 shader = ExtResource("3_7k868")
-shader_parameter/colour1 = 0.0
+shader_parameter/texture_HUD = SubResource("GradientTexture2D_7k868")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_54nrm"]
 animations = [{
@@ -132,6 +141,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_6vcvc"]
+font_names = PackedStringArray("Franklin Gothic")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
 
@@ -150,15 +162,13 @@ position = Vector2(0, -111)
 texture = ExtResource("3_6vcvc")
 
 [node name="HP(Heart)" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(-139, -113)
+position = Vector2(-138.75, -109)
 sprite_frames = SubResource("SpriteFrames_54nrm")
-animation = &"MidHP"
+animation = &"HighHP"
 autoplay = "HighHP"
-frame = 3
-frame_progress = 0.802123
 
 [node name="Coin" type="AnimatedSprite2D" parent="Sprite2D"]
-position = Vector2(-51, -111)
+position = Vector2(-50.25, -106.75)
 sprite_frames = SubResource("SpriteFrames_55jeb")
 autoplay = "default"
 frame_progress = 0.487191
@@ -178,12 +188,13 @@ size_flags_vertical = 4
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -57.0
-offset_top = -512.0
-offset_right = 476.0
-offset_bottom = -365.0
+offset_left = -56.0
+offset_top = -489.0
+offset_right = 477.0
+offset_bottom = -342.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
+theme_override_fonts/font = SubResource("SystemFont_6vcvc")
 theme_override_font_sizes/font_size = 100
 
 [node name="Enemy0_Points" type="Label" parent="."]
