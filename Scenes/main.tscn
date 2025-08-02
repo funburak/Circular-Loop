@@ -277,7 +277,7 @@ sprite_frames = SubResource("SpriteFrames_jekl6")
 animation = &"TAKING_DAMAGE"
 autoplay = "IDLE"
 frame = 5
-frame_progress = 0.308059
+frame_progress = 0.36381
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -19,6 +19,7 @@ var rng = RandomNumberGenerator.new()
 @onready var enemy_3_points: Label = $Enemy3_Points
 @onready var enemy_4_points: Label = $Enemy4_Points
 @onready var hp_heart: AnimatedSprite2D = $"Sprite2D/HP(Heart)"
+@onready var base_structure: AnimatedSprite2D = $Base
 
 
 var player : Player
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 		hp_heart.play("HighHP")
 	elif GameManager.health <= 66 && GameManager.health > 33:
 		hp_heart.play("MidHP")
+		base_structure.play("TAKING_DAMAGE")
 	else:
 		hp_heart.play("LowHP")
 	
@@ -136,9 +138,9 @@ func wave_2():
 func take_damage(damage: int):
 	if (GameManager.health > 0):
 		GameManager.health -= damage
-		player.modulate = Color(1,0,0) # red
+		base_structure.modulate = Color(1,0,0) # red
 		await get_tree().create_timer(0.1).timeout
-		player.modulate = Color(1,1,1) # white
+		base_structure.modulate = Color(1,1,1) # white
 
 func _on_left_area_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent() as Enemy
