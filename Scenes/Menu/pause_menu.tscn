@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddeu0x67hsdkj"]
+
+[ext_resource type="Script" uid="uid://b4uu2sohp8f06" path="res://Scripts/Menu/pause_menu.gd" id="1_i0al5"]
+[ext_resource type="Shader" uid="uid://b00u8dbg5ja1b" path="res://Assets/Shaders/pause_menu.gdshader" id="2_6pfc5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnmi5"]
+shader = ExtResource("2_6pfc5")
+shader_parameter/amount = 2.0
+
+[sub_resource type="SystemFont" id="SystemFont_6pfc5"]
+font_names = PackedStringArray("Franklin Gothic")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_jnmi5"]
+font_names = PackedStringArray("Franklin Gothic")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_mux1j"]
+font_names = PackedStringArray("Franklin Gothic")
+subpixel_positioning = 0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0al5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_jnmi5")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1438.5
+offset_top = -926.0
+offset_right = 1438.5
+offset_bottom = 926.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 101
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -46.5
+offset_right = 79.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_6pfc5")
+text = "GAME IS PAUSED"
+
+[node name="ReturnToGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_jnmi5")
+text = "Return to the game"
+
+[node name="ReturnToMainmenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_mux1j")
+text = "Back to main menu"
+
+[connection signal="pressed" from="VBoxContainer/ReturnToGameButton" to="." method="_on_return_to_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ReturnToMainmenuButton" to="." method="_on_return_to_mainmenu_button_pressed"]

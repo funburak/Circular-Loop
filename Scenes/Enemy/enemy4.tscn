@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cf86pq5joaao3"]
+
+[ext_resource type="Script" uid="uid://g0joove6ju1r" path="res://Scripts/Enemy/enemy4.gd" id="1_gjvxq"]
+[ext_resource type="Texture2D" uid="uid://dixi163gggkju" path="res://Assets/Enemies/Blue/Enemy1(BLUE)1.png" id="1_iyofd"]
+[ext_resource type="Texture2D" uid="uid://dlnkhi2of7hp4" path="res://Assets/Enemies/Blue/Enemy1(BLUE)2.png" id="2_jb7m3"]
+[ext_resource type="Texture2D" uid="uid://dqef37aei0ly4" path="res://Assets/Enemies/Blue/Enemy1(BLUE)3.png" id="3_4f7pr"]
+[ext_resource type="Texture2D" uid="uid://dy1uakuf8h1nk" path="res://Assets/Enemies/Blue/Enemy1(BLUE)4.png" id="4_dkdc5"]
+[ext_resource type="Texture2D" uid="uid://6r3mfeulalqk" path="res://Assets/Enemies/Blue/Enemy1(BLUE)5.png" id="5_2xfdk"]
+[ext_resource type="Texture2D" uid="uid://bxltfieuo2fjt" path="res://Assets/Enemies/Blue/Enemy1(BLUE)6.png" id="6_6yrvr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26beh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iyofd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jb7m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4f7pr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dkdc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2xfdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6yrvr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbcgd"]
+radius = 21.003
+
+[node name="Enemy4" type="AnimatedSprite2D"]
+z_index = 5
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_26beh")
+autoplay = "default"
+frame_progress = 0.0171003
+script = ExtResource("1_gjvxq")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -14.75
+offset_top = -55.5
+offset_right = 103.25
+offset_bottom = 81.5
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_dbcgd")
