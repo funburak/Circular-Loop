@@ -15,7 +15,7 @@ var money_drop: int
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	angle = rng.randf_range(0.0, TAU)
+	angle = rng.randf_range(0, TAU/2)
 
 func _physics_process(delta: float) -> void:
 	angle += speed * delta
@@ -39,6 +39,7 @@ func set_label_text():
 
 func take_damage():
 	health -= 1
+	damage_indicator()
 	change_circle()
 
 func change_circle():
@@ -47,3 +48,8 @@ func change_circle():
 		current_center_point = GameManager.center_right_circle
 	else:
 		current_center_point = GameManager.center_left_circle
+
+func damage_indicator():
+	self.modulate = Color(1,0,0)
+	await get_tree().create_timer(0.1).timeout
+	self.modulate = Color(1,1,1)

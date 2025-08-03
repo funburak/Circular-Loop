@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://c6nhp21lu8lg8"]
+[gd_scene load_steps=70 format=3 uid="uid://c6nhp21lu8lg8"]
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://bcmup71aq2ott" path="res://Assets/Hud/Coin/Coin5.png" id="25_dmskm"]
 [ext_resource type="Texture2D" uid="uid://bf4vq2xe4x8q1" path="res://Assets/Base/BASE(DAMAGED)12.png" id="25_fg68e"]
 [ext_resource type="Texture2D" uid="uid://b70tqpgwtbhko" path="res://Assets/Hud/Coin/Coin6.png" id="26_xdkp6"]
+[ext_resource type="Shader" uid="uid://cyca76l6aoyfr" path="res://Shaders/texture_Hud(colour).gdshader" id="27_gsvbx"]
 [ext_resource type="Texture2D" uid="uid://cjreqwcyrxbtn" path="res://Assets/DamageZone.png" id="29_6vcvc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jekl6"]
@@ -139,7 +140,15 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_bv80c"]
+colors = PackedColorArray(0.578749, 0.172409, 0.242354, 1, 0.684706, 0.935199, 0.95507, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptfg5"]
+gradient = SubResource("Gradient_bv80c")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hpc6h"]
+shader = ExtResource("27_gsvbx")
+shader_parameter/texture_HUD = SubResource("GradientTexture2D_ptfg5")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_54nrm"]
 animations = [{
@@ -257,6 +266,9 @@ font_names = PackedStringArray("Franklin Gothic")
 [sub_resource type="SystemFont" id="SystemFont_neg2b"]
 font_names = PackedStringArray("Franklin Gothic")
 
+[sub_resource type="SystemFont" id="SystemFont_55jeb"]
+font_names = PackedStringArray("Franklin Gothic")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueoa1"]
 size = Vector2(20, 139)
 
@@ -269,7 +281,7 @@ script = ExtResource("1_jjgbg")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Base" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 4
 texture_filter = 1
 position = Vector2(-20, -94)
 scale = Vector2(4, 4)
@@ -331,7 +343,7 @@ theme_override_font_sizes/font_size = 100
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -546.0
+offset_left = -539.0
 offset_top = -354.0
 offset_right = -409.0
 offset_bottom = -267.0
@@ -339,12 +351,13 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_7k868")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
 
 [node name="Enemy1_Points" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -342.0
+offset_left = -330.0
 offset_top = -349.0
 offset_right = -206.0
 offset_bottom = -269.0
@@ -352,12 +365,13 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_hpc6h")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
 
 [node name="Enemy2_Points" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -140.0
+offset_left = -130.0
 offset_top = -353.0
 offset_right = -2.0
 offset_bottom = -269.0
@@ -365,32 +379,45 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_kltya")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
 
 [node name="Enemy3_Points" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 65.0
+offset_left = 74.0
 offset_top = -353.0
 offset_right = 199.0
-offset_bottom = -271.0
+offset_bottom = -267.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_e08e2")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
 
 [node name="Enemy4_Points" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 271.0
-offset_top = -347.0
+offset_left = 281.0
+offset_top = -355.0
 offset_right = 405.0
-offset_bottom = -261.0
+offset_bottom = -268.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.842635, 3.56168e-06, 4.81307e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_neg2b")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
+
+[node name="Elite_Points" type="Label" parent="."]
+offset_left = 486.0
+offset_top = -355.0
+offset_right = 603.0
+offset_bottom = -267.0
+theme_override_colors/font_color = Color(0.843137, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_55jeb")
+theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
 
 [node name="LeftArea" type="Area2D" parent="."]
 position = Vector2(-329, -97)
@@ -400,7 +427,7 @@ position = Vector2(0, 59.5)
 shape = SubResource("RectangleShape2D_ueoa1")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftArea"]
-z_index = 5
+z_index = 6
 texture_filter = 1
 position = Vector2(-3, 21)
 scale = Vector2(4, 4)
@@ -414,7 +441,7 @@ position = Vector2(0, 62)
 shape = SubResource("RectangleShape2D_6vcvc")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightArea"]
-z_index = 5
+z_index = 6
 texture_filter = 1
 position = Vector2(-3, 21)
 scale = Vector2(4, 4)

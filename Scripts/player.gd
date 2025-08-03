@@ -8,7 +8,7 @@ var attack_timer : Timer
 
 func _ready() -> void:
 	attack_timer = Timer.new()
-	attack_timer.wait_time = 0.25
+	attack_timer.wait_time = 0.15
 	attack_timer.one_shot = true
 	attack_timer.autostart = false
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))

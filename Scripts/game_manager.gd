@@ -16,6 +16,7 @@ var enemy1_point: int = 0
 var enemy2_point: int = 0
 var enemy3_point: int = 0
 var enemy4_point: int = 0
+var elite_point: int = 0
 var health : int = 100
 var enemy_group: Array[Enemy]
 
