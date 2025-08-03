@@ -47,6 +47,12 @@ func _process(delta: float) -> void:
 			3:
 				wave_3()
 				wave_spawned = true
+			4:
+				wave_4()
+				wave_spawned = true
+			5:
+				wave_5()
+				wave_spawned = true
 	
 	label.text = str(GameManager.total_point)
 	enemy_0_points.text = str(GameManager.enemy0_point)
@@ -120,7 +126,7 @@ func check_enemies_dead():
 			get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
 		else:
 			wave_spawned = false
-			print("Shop phase")
+			#print("Shop phase")
 		
 func spawn_random_enemies(count:int):
 	rng.randomize()
@@ -128,16 +134,15 @@ func spawn_random_enemies(count:int):
 	var scene = enemy_scenes[index]
 	spawn_enemies(count,scene)
 
-func spawn_elite(count:int):
+func spawn_elite():
 	var elite = elite_scene.instantiate() as Enemy
 	if elite:
-		for i in range(count):
-			elite.health = 4
-			elite.key_label = GameManager.get_random_key()
-			elite.set_label_text()
-			elite.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			elite.add_to_group("enemies")
-			add_child(elite)
+		elite.health = 4
+		elite.key_label = GameManager.get_random_key()
+		elite.set_label_text()
+		elite.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
+		elite.add_to_group("enemies")
+		add_child(elite)
 
 func wave_1():
 	var enemy_count = 3
@@ -156,9 +161,30 @@ func wave_2():
 		
 
 func wave_3():
-	var elite_count = 1
-	spawn_elite(elite_count)
+	spawn_elite()
+	await get_tree().create_timer(1).timeout
+	spawn_elite()
 	
+func wave_4():
+	var enemy_count = 4
+	
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+
+func wave_5():
+	spawn_elite()
+	await get_tree().create_timer(1).timeout
+	spawn_elite()
+	await get_tree().create_timer(1).timeout
+	spawn_elite()
+
 func take_damage(damage: int):
 	if (GameManager.health > 0):
 		GameManager.health -= damage

@@ -1,7 +1,7 @@
 extends Node
 
 var radius = 530/2
-
+const MUSIC = preload("res://Assets/Music/Three Red Hearts - Go (No Vocal).ogg")
 var center_left_circle = Vector2(-382,220)
 var center_right_circle = Vector2(388, 224)
 var spawn_points_left_circle = [Vector2(50,40), Vector2(100,400), Vector2(300,400), Vector2(50,50)]
@@ -21,7 +21,16 @@ var health : int = 100
 var enemy_group: Array[Enemy]
 
 var current_wave = 1
-var max_wave = 3
+var max_wave = 5
+
+var music_player: AudioStreamPlayer
+
+func _ready() -> void:
+	music_player = AudioStreamPlayer.new()
+	music_player.stream = MUSIC
+	music_player.autoplay = false
+	add_child(music_player)
+	music_player.play()
 
 func get_random_key():
 	rng.randomize()
