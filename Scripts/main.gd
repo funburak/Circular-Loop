@@ -5,6 +5,8 @@ var enemy_scene1 = preload("res://Scenes/Enemy/enemy1.tscn")
 var enemy_scene2 = preload("res://Scenes/Enemy/enemy2.tscn")
 var enemy_scene3 = preload("res://Scenes/Enemy/enemy3.tscn")
 var enemy_scene4 = preload("res://Scenes/Enemy/enemy4.tscn")
+var enemy_scenes = [enemy_scene, enemy_scene1, enemy_scene2, enemy_scene3, enemy_scene4]
+
 var player_scene = preload("res://Scenes/player.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var player_left: Marker2D = $Player_Left
@@ -16,74 +18,58 @@ var rng = RandomNumberGenerator.new()
 @onready var enemy_2_points: Label = $Enemy2_Points
 @onready var enemy_3_points: Label = $Enemy3_Points
 @onready var enemy_4_points: Label = $Enemy4_Points
+@onready var hp_heart: AnimatedSprite2D = $"Sprite2D/HP(Heart)"
+@onready var base_structure: AnimatedSprite2D = $Base
 
 
 var player : Player
+var wave_spawned = false
 
 func _ready() -> void:
+	GameManager.health = 100
 	Engine.time_scale = 1
 	GameManager.game_is_paused = false
+	GameManager.current_wave = 1
 	reset_labels()
 	spawn_player()
-	spawn_enemy0()
-	spawn_enemy1()
-	spawn_enemy2()
-	spawn_enemy3()
-	spawn_enemy4()
-			
+	
 func _process(delta: float) -> void:
+	if not wave_spawned:
+		match GameManager.current_wave:
+			1: 
+				wave_1()
+				wave_spawned = true
+			2:
+				wave_2()
+				wave_spawned = true
+	
 	label.text = str(GameManager.total_point)
 	enemy_0_points.text = str(GameManager.enemy0_point)
 	enemy_1_points.text = str(GameManager.enemy1_point)
 	enemy_2_points.text = str(GameManager.enemy2_point)
 	enemy_3_points.text = str(GameManager.enemy3_point)
 	enemy_4_points.text = str(GameManager.enemy4_point)
+	
+	if GameManager.health <= 100 && GameManager.health > 66:
+		hp_heart.play("HighHP")
+	elif GameManager.health <= 66 && GameManager.health > 33:
+		hp_heart.play("MidHP")
+		base_structure.play("TAKING_DAMAGE")
+	else:
+		hp_heart.play("LowHP")
+	
+	check_enemies_dead()
 
-func spawn_enemy1():
+func spawn_enemies(count: int, enemy_scene_type: PackedScene):
 	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene1.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy0():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy = enemy_scene.instantiate() as Enemy
+	for i in range(0,count):
+		var enemy = enemy_scene_type.instantiate() as Enemy
 		if enemy:
 			enemy.key_label = GameManager.get_random_key()
 			enemy.set_label_text()
 			enemy.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
+			enemy.add_to_group("enemies")
 			add_child(enemy)
-func spawn_enemy2():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene2.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy3():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene3.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
-func spawn_enemy4():
-	rng.randomize()
-	for i in range(0,2):
-		var enemy1 = enemy_scene4.instantiate() as Enemy
-		if enemy1:
-			enemy1.key_label = GameManager.get_random_key()
-			enemy1.set_label_text()
-			enemy1.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
-			add_child(enemy1)
 
 func spawn_player():
 	player = player_scene.instantiate()
@@ -118,3 +104,52 @@ func change_player_position(position):
 		player.global_position = player_right.global_position
 	elif player.global_position == player_right.global_position && position == "left":
 		player.global_position = player_left.global_position
+
+func check_enemies_dead():
+	if get_tree().get_nodes_in_group("enemies").is_empty():
+		GameManager.current_wave += 1
+		if GameManager.current_wave == GameManager.max_wave:
+			get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
+		else:
+			wave_spawned = false
+			print("Shop phase")
+		
+func spawn_random_enemies(count:int):
+	rng.randomize()
+	var index = rng.randi_range(0,enemy_scenes.size()-1)
+	var scene = enemy_scenes[index]
+	spawn_enemies(count,scene)
+
+func wave_1():
+	var enemy_count = 3
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	
+func wave_2():
+	var enemy_count = 5
+	
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+	await get_tree().create_timer(1).timeout
+	spawn_random_enemies(enemy_count)
+		
+func take_damage(damage: int):
+	if (GameManager.health > 0):
+		GameManager.health -= damage
+		base_structure.modulate = Color(1,0,0) # red
+		await get_tree().create_timer(0.1).timeout
+		base_structure.modulate = Color(1,1,1) # white
+
+func _on_left_area_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent() as Enemy
+	if enemy:
+		#GameManager.enemy_group.erase(enemy)
+		take_damage(enemy.damage)
+
+func _on_right_area_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent() as Enemy
+	if enemy:
+		#GameManager.enemy_group.erase(enemy)
+		take_damage(enemy.damage)

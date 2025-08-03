@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://c444gw6gq21qn"]
+
+[ext_resource type="Texture2D" uid="uid://bla3q4urr4ljs" path="res://Assets/Hud/GameOver.png" id="1_otch0"]
+[ext_resource type="Script" uid="uid://cv1ghlf0fosi8" path="res://Scripts/Menu/game_over_menu.gd" id="1_uuamm"]
+
+[sub_resource type="SystemFont" id="SystemFont_h83e1"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_uuamm"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[sub_resource type="SystemFont" id="SystemFont_7ceu4"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uuamm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_otch0")
+
+[node name="Button" type="Button" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -955.0
+offset_top = -535.0
+offset_right = 960.0
+offset_bottom = 530.0
+theme_override_fonts/font = SubResource("SystemFont_h83e1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -427.0
+offset_top = 4.0
+offset_right = -180.0
+offset_bottom = 228.0
+theme_override_fonts/font = SubResource("SystemFont_uuamm")
+theme_override_font_sizes/font_size = 35
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-5, 1)
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = -395.0
+offset_top = -286.0
+offset_right = 491.0
+offset_bottom = -217.0
+theme_override_colors/font_color = Color(0.83911, 0, 0.137041, 1)
+theme_override_fonts/font = SubResource("SystemFont_7ceu4")
+theme_override_font_sizes/font_size = 50
+text = "Click to return to the main menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
