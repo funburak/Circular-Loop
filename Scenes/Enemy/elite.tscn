@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://gdxxevh4ayl4"]
+
+[ext_resource type="Texture2D" uid="uid://c6v5hoo31bgro" path="res://Assets/Enemies/Elite/Enemy1(ELITE)1.png" id="1_340yr"]
+[ext_resource type="Texture2D" uid="uid://btsrq75jt1wmj" path="res://Assets/Enemies/Elite/Enemy1(ELITE)2.png" id="2_ij0ob"]
+[ext_resource type="Texture2D" uid="uid://dj7uymxtdfyys" path="res://Assets/Enemies/Elite/Enemy1(ELITE)3.png" id="3_5f806"]
+[ext_resource type="Texture2D" uid="uid://bkme8iul3xw72" path="res://Assets/Enemies/Elite/Enemy1(ELITE)4.png" id="4_yu25v"]
+[ext_resource type="Texture2D" uid="uid://bdouhbwoscp2w" path="res://Assets/Enemies/Elite/Enemy1(ELITE)5.png" id="5_owoqh"]
+[ext_resource type="Texture2D" uid="uid://c6blv7q51gkjq" path="res://Assets/Enemies/Elite/Enemy1(ELITE)6.png" id="6_27f7d"]
+[ext_resource type="Script" uid="uid://cl4iy3owc4yqy" path="res://Scripts/Enemy/elite.gd" id="7_ij0ob"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_altpo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_340yr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ij0ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5f806")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yu25v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_owoqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_27f7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_340yr"]
+height = 32.5
+
+[node name="Elite" type="AnimatedSprite2D"]
+z_index = 5
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_altpo")
+autoplay = "default"
+frame_progress = 0.151976
+script = ExtResource("7_ij0ob")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -51.0
+offset_bottom = -16.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.25, 1)
+shape = SubResource("CapsuleShape2D_340yr")

@@ -5,6 +5,7 @@ var enemy_scene1 = preload("res://Scenes/Enemy/enemy1.tscn")
 var enemy_scene2 = preload("res://Scenes/Enemy/enemy2.tscn")
 var enemy_scene3 = preload("res://Scenes/Enemy/enemy3.tscn")
 var enemy_scene4 = preload("res://Scenes/Enemy/enemy4.tscn")
+var elite_scene = preload("res://Scenes/Enemy/elite.tscn")
 var enemy_scenes = [enemy_scene, enemy_scene1, enemy_scene2, enemy_scene3, enemy_scene4]
 
 var player_scene = preload("res://Scenes/player.tscn")
@@ -18,9 +19,10 @@ var rng = RandomNumberGenerator.new()
 @onready var enemy_2_points: Label = $Enemy2_Points
 @onready var enemy_3_points: Label = $Enemy3_Points
 @onready var enemy_4_points: Label = $Enemy4_Points
+@onready var elite_points: Label = $Elite_Points
 @onready var hp_heart: AnimatedSprite2D = $"Sprite2D/HP(Heart)"
 @onready var base_structure: AnimatedSprite2D = $Base
-
+@onready var health_label: Label = $Health_Label
 
 var player : Player
 var wave_spawned = false
@@ -42,6 +44,9 @@ func _process(delta: float) -> void:
 			2:
 				wave_2()
 				wave_spawned = true
+			3:
+				wave_3()
+				wave_spawned = true
 	
 	label.text = str(GameManager.total_point)
 	enemy_0_points.text = str(GameManager.enemy0_point)
@@ -49,6 +54,7 @@ func _process(delta: float) -> void:
 	enemy_2_points.text = str(GameManager.enemy2_point)
 	enemy_3_points.text = str(GameManager.enemy3_point)
 	enemy_4_points.text = str(GameManager.enemy4_point)
+	elite_points.text = str(GameManager.elite_point)
 	
 	if GameManager.health <= 100 && GameManager.health > 66:
 		hp_heart.play("HighHP")
@@ -57,7 +63,8 @@ func _process(delta: float) -> void:
 		base_structure.play("TAKING_DAMAGE")
 	else:
 		hp_heart.play("LowHP")
-	
+		
+	update_health()
 	check_enemies_dead()
 
 func spawn_enemies(count: int, enemy_scene_type: PackedScene):
@@ -88,6 +95,7 @@ func reset_labels():
 	GameManager.enemy2_point = 0
 	GameManager.enemy3_point = 0
 	GameManager.enemy4_point = 0
+	GameManager.elite_point = 0
 	GameManager.total_money = 0
 	GameManager.total_point = 0
 func pause():
@@ -108,7 +116,7 @@ func change_player_position(position):
 func check_enemies_dead():
 	if get_tree().get_nodes_in_group("enemies").is_empty():
 		GameManager.current_wave += 1
-		if GameManager.current_wave == GameManager.max_wave:
+		if GameManager.current_wave > GameManager.max_wave:
 			get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
 		else:
 			wave_spawned = false
@@ -119,6 +127,17 @@ func spawn_random_enemies(count:int):
 	var index = rng.randi_range(0,enemy_scenes.size()-1)
 	var scene = enemy_scenes[index]
 	spawn_enemies(count,scene)
+
+func spawn_elite(count:int):
+	var elite = elite_scene.instantiate() as Enemy
+	if elite:
+		for i in range(count):
+			elite.health = 4
+			elite.key_label = GameManager.get_random_key()
+			elite.set_label_text()
+			elite.global_position = GameManager.spawn_points_left_circle[rng.randi_range(0,3)]
+			elite.add_to_group("enemies")
+			add_child(elite)
 
 func wave_1():
 	var enemy_count = 3
@@ -135,12 +154,20 @@ func wave_2():
 	await get_tree().create_timer(1).timeout
 	spawn_random_enemies(enemy_count)
 		
+
+func wave_3():
+	var elite_count = 1
+	spawn_elite(elite_count)
+	
 func take_damage(damage: int):
 	if (GameManager.health > 0):
 		GameManager.health -= damage
 		base_structure.modulate = Color(1,0,0) # red
 		await get_tree().create_timer(0.1).timeout
 		base_structure.modulate = Color(1,1,1) # white
+
+func update_health():
+	health_label.text = "%" + str(GameManager.health)
 
 func _on_left_area_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent() as Enemy
