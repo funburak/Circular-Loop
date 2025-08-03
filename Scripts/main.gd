@@ -22,6 +22,7 @@ var rng = RandomNumberGenerator.new()
 @onready var elite_points: Label = $Elite_Points
 @onready var hp_heart: AnimatedSprite2D = $"Sprite2D/HP(Heart)"
 @onready var base_structure: AnimatedSprite2D = $Base
+@onready var health_label: Label = $Health_Label
 
 var player : Player
 var wave_spawned = false
@@ -62,7 +63,8 @@ func _process(delta: float) -> void:
 		base_structure.play("TAKING_DAMAGE")
 	else:
 		hp_heart.play("LowHP")
-	
+		
+	update_health()
 	check_enemies_dead()
 
 func spawn_enemies(count: int, enemy_scene_type: PackedScene):
@@ -163,6 +165,9 @@ func take_damage(damage: int):
 		base_structure.modulate = Color(1,0,0) # red
 		await get_tree().create_timer(0.1).timeout
 		base_structure.modulate = Color(1,1,1) # white
+
+func update_health():
+	health_label.text = "%" + str(GameManager.health)
 
 func _on_left_area_area_entered(area: Area2D) -> void:
 	var enemy = area.get_parent() as Enemy

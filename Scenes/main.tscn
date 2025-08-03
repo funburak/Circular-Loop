@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c6nhp21lu8lg8"]
+[gd_scene load_steps=71 format=3 uid="uid://c6nhp21lu8lg8"]
 
 [ext_resource type="Script" uid="uid://d04elcleb7mbo" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://dkufjg0yx4mh7" path="res://Assets/Hud/Background/EmptyHUD.png" id="2_1w6v2"]
@@ -269,6 +269,9 @@ font_names = PackedStringArray("Franklin Gothic")
 [sub_resource type="SystemFont" id="SystemFont_55jeb"]
 font_names = PackedStringArray("Franklin Gothic")
 
+[sub_resource type="SystemFont" id="SystemFont_gsvbx"]
+font_names = PackedStringArray("Franklin Gothic")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueoa1"]
 size = Vector2(20, 139)
 
@@ -417,6 +420,15 @@ offset_bottom = -267.0
 theme_override_colors/font_color = Color(0.843137, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_55jeb")
 theme_override_font_sizes/font_size = 50
+vertical_alignment = 1
+
+[node name="Health_Label" type="Label" parent="."]
+offset_left = -463.0
+offset_top = -533.0
+offset_right = -273.0
+offset_bottom = -356.0
+theme_override_fonts/font = SubResource("SystemFont_gsvbx")
+theme_override_font_sizes/font_size = 70
 vertical_alignment = 1
 
 [node name="LeftArea" type="Area2D" parent="."]
