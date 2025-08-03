@@ -7,6 +7,6 @@ func _physics_process(delta: float) -> void:
 	speed = 1
 	damage = 15
 	money_drop = 20
-	point = 20
+	point = 50
 	if(health<=0):
 		GameManager.enemy2_point += 1
