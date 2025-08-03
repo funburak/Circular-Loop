@@ -6,4 +6,4 @@ func _on_start_game_button_pressed() -> void:
 
 
 func _on_volume_slider_value_changed(value: float) -> void:
-	GameManager.volume_float_value = value
+	GameManager.music_player.volume_db = value - 25

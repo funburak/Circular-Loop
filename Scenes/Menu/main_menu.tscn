@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccfoeg546yir5"]
+[gd_scene load_steps=5 format=3 uid="uid://ccfoeg546yir5"]
 
 [ext_resource type="Script" uid="uid://ctxvpy282wfnp" path="res://Scripts/Menu/main_menu.gd" id="1_bkwd7"]
+[ext_resource type="Texture2D" uid="uid://bbncglcrm6q7u" path="res://Assets/Hud/mainmenu.png" id="2_tself"]
 
 [sub_resource type="SystemFont" id="SystemFont_bkwd7"]
 font_names = PackedStringArray("Franklin Gothic")
@@ -31,6 +32,10 @@ offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(128.5, 13)
+texture = ExtResource("2_tself")
+
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_bkwd7")
@@ -38,6 +43,7 @@ text = "Start the game"
 
 [node name="Volume" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_tself")
 text = "Volume"
 horizontal_alignment = 1

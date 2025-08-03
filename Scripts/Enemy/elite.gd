@@ -8,4 +8,4 @@ func _physics_process(delta: float) -> void:
 	point = 100
 	if(health<=0):
 		GameManager.elite_point += 1
-	print(health)
+	#print(health)

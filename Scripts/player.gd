@@ -43,7 +43,7 @@ func _input(event):
 		change_position("right")
 
 func _physics_process(delta: float) -> void:
-	print(GameManager.health)
+	#print(GameManager.health)
 	if GameManager.health <= 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://Scenes/Menu/game_over_menu.tscn")
